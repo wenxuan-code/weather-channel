@@ -17,14 +17,25 @@
 
   <%- include("partials/errors.ejs") %>
 
+  <div class="tv">
+    <div class="tv__top"></div>
+    <div class="tv__bottom"></div>
+  </div>
+
   <% if (locals.success) { %>
   <p><%= location %></p>
   <p>Latitude: <%= latitude %></p>
   <p>Longitude: <%= longitude %></p>
 
+  <img src="./images/weather-icons/<%= currently.icon%>.png" alt="<% currently.icon %>">
+
   <p>Kia ora <%= location %>, this is the <%= datetime %> weather update. Right now, the conditions are "<%= currently.condition %>". It feels like <%= currently.temperature %>°C.</p>
 
+  <img src="./images/weather-icons/<%= hourly.icon%>.png " alt="<% hourly.icon %>">
+
   <p>For the next few hours, the conditions will be "<%= hourly.condition %>"</p>
+
+  <img src="./images/weather-icons/<%= daily.icon%>.png " alt="<% daily.icon %>">
 
   <p>In the coming week, the conditions will be "<%= daily.condition %>"</p>
   <% } %>

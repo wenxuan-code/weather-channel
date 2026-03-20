@@ -8,10 +8,6 @@ import dummyweather from "../dev-reference/dummySmaller.json" with { type: "json
 import { http } from "../lib/http.js";
 import { formatDate } from "../lib/formatDate.js";
 
-//!DUMMY data
-const coordinates = dummygeo;
-const weatherData = dummyweather;
-
 const apiKey = process.env.API_KEY;
 const geoApiKey = process.env.GEO_API_KEY;
 const geoOptions = {
@@ -50,9 +46,13 @@ export async function displayWeather(req, res) {
     location = "Auckland";
   }
 
+  //!DUMMY data
+  const coordinates = dummygeo;
+  const weatherData = dummyweather;
+
   //=== !coords ====
   // Convert address to coordinates
-  const coordinates = await geocoding.geocode(location);
+  // const coordinates = await geocoding.geocode(location);
 
   if (coordinates.length < 1) {
     res.status(500).render("index", {
@@ -67,11 +67,11 @@ export async function displayWeather(req, res) {
   const finalCoord = coordinates[0];
 
   //=== !weather ====
-  const weatherQueryString = `https://api.pirateweather.net/forecast/${apiKey}/${finalCoord.latitude},${finalCoord.longitude}?exclude=minutely&units=ca`;
+  // const weatherQueryString = `https://api.pirateweather.net/forecast/${apiKey}/${finalCoord.latitude},${finalCoord.longitude}?exclude=minutely&units=ca`;
 
-  const weatherDataFetch = await http.get(weatherQueryString);
-  
-  const weatherData = weatherDataFetch.data;
+  // const weatherDataFetch = await http.get(weatherQueryString);
+
+  // const weatherData = weatherDataFetch.data;
 
   const currently = {
     condition: weatherData.currently.summary,
