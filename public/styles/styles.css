@@ -1,5 +1,132 @@
+html {
+  --back: #163413;
+  --fore: #e8985e;
+}
+
 body {
-  background-color: #163413;
-  color:#e8985e;
-  font-size: 2rem;
+  background-color: var(--back);
+  color: var(--fore);
+  font-size: 1.3rem;
+  padding: 20px;
+
+  width: 100vw;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+
+  width: min(1000px, 90vw);
+  margin: auto;
+}
+
+.report img {
+  width: 200px;
+}
+
+div.tv {
+  --height: calc(600px);
+  --height_top: calc(var(--height) * 0.7);
+  --height_bottom: calc(var(--height) * 0.3);
+
+  width: min(700px, 90%);
+  height: var(--height);
+
+  outline: 3px solid red;
+  background: black;
+  display: grid;
+}
+
+div.tv__top,
+div.tv__bottom {
+  width: 100%;
+}
+
+div.tv_top {
+  background: #85a7a1;
+  height: var(--height_top);
+  position: relative;
+}
+
+div.tv_bottom {
+  background: palevioletred;
+  height: var(--height_bottom);
+}
+
+div.tv__graphic {
+  width: min-content;
+  /* background: #184927; */
+  padding: 5%;
+  position: absolute;
+  right: 4%;
+  top: 7%;
+
+  /* border-radius: 16px; */
+  background: #85a7a1;
+  box-shadow:
+    inset 9px 9px 21px #354340,
+    inset -9px -9px 21px #d5ffff;
+
+  img {
+    max-width: revert;
+    width: calc(120px + 5vw);
+    display: block;
+    animation: float 3s ease-in-out infinite;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translatey(5px);
+  }
+  50% {
+    transform: translatey(-5px);
+  }
+  100% {
+    transform: translatey(5px);
+  }
+}
+
+div.tv__reporter {
+  width: min(200px, 100%);
+  background: #177c77;
+  position: absolute;
+  bottom: 0%;
+  left: 10%;
+  display: grid;
+
+  img {
+    display: block
+  }
+}
+
+@media screen and (max-width: 580px) {
+  div.tv{
+    --height: 450px
+  }
+
+  div.tv__graphic img {
+    width: calc(80px + 5vw);
+  }
+
+  div.tv__reporter {
+    width: min(200px, 40%);
+  }
+}
+
+@media screen and (max-width: 420px) {
+  div.tv{
+    --height: 250px
+  }
+
+  div.tv__graphic img {
+    width: calc(60px + 5vw);
+  }
+
+  div.tv__reporter {
+    width: min(200px, 30%);
+  }
 }
