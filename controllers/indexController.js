@@ -2,7 +2,9 @@ import dotenv from "dotenv";
 dotenv.config();
 import NodeGeocoder from "node-geocoder";
 import { body, matchedData, validationResult } from "express-validator";
+
 import dummygeo from "../dev-reference/dummygeo.json" with { type: "json" };
+import dummyweather from "../dev-reference/dummySmaller.json" with { type: "json" };
 
 const apiKey = process.env.API_KEY;
 const geoApiKey = process.env.GEO_API_KEY;
@@ -13,10 +15,7 @@ const geoOptions = {
 const geocoding = NodeGeocoder(geoOptions);
 
 const validateSearch = [
-  body("location")
-    .trim()
-    .isString()
-    .withMessage("Location should be a string")
+  body("location").trim().isString().withMessage("Location should be a string"),
 ];
 
 //for the form input
@@ -48,8 +47,9 @@ export async function displayWeather(req, res) {
   // Convert address to coordinates
   // const coordinates = await geocoding.geocode(location);
 
-  //!DUMMY coord
+  //!DUMMY data
   const coordinates = dummygeo;
+  const weatherData = dummyweather;
 
   //if coordinates.length < 1, res.render index with a error
   if (coordinates.length < 1) {
@@ -66,13 +66,52 @@ export async function displayWeather(req, res) {
 
   const finalCoord = coordinates[0];
 
+  const currently = {
+    condition: weatherData.currently.summary,
+    icon: weatherData.currently.icon,
+    temperature: weatherData.currently.apparentTemperature,
+  };
+
+  const hourly = {
+    condition: weatherData.hourly.summary,
+    icon: weatherData.hourly.icon,
+  };
+
+  const daily = {
+    condition: weatherData.daily.summary,
+    icon: weatherData.daily.icon,
+  };
+
+  const currentDatetime = new Date(weatherData.currently.time * 1000);
+  const date = currentDatetime.getDate();
+  const month = currentDatetime.getMonth();
+  const year = currentDatetime.getFullYear();
+  const day = new Intl.DateTimeFormat("en-US", { weekday: "long" }).format(
+    currentDatetime.getDay(),
+  );
+  const hours = currentDatetime.getHours();
+  const minutes = "0" + currentDatetime.getMinutes();
+  const datetime = `${day} ${date}/${month}/${year}, ${hours}:${minutes}`;
+
   res.render("index", {
     success: true,
+
     location: finalCoord.state
       ? ` ${finalCoord.state}, ${finalCoord.country}`
       : `${location}, ${finalCoord.country}`,
+
     longitude: finalCoord.longitude,
+
     latitude: finalCoord.latitude,
+
     input: location,
+
+    datetime: datetime,
+
+    currently: currently,
+
+    hourly: hourly,
+
+    daily: daily,
   });
 }

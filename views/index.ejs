@@ -18,9 +18,15 @@
   <%- include("partials/errors.ejs") %>
 
   <% if (locals.success) { %>
-    <p><%=location%></p>
-    <p>Latitude: <%=latitude%></p>
-    <p>Longitude: <%=longitude%></p>
+  <p><%= location %></p>
+  <p>Latitude: <%= latitude %></p>
+  <p>Longitude: <%= longitude %></p>
+
+  <p>Kia ora <%= location %>, this is the <%= datetime %> weather update. Right now, the conditions are "<%= currently.condition %>". It feels like <%= currently.temperature %>°C.</p>
+
+  <p>For the next few hours, the conditions will be "<%= hourly.condition %>"</p>
+
+  <p>In the coming week, the conditions will be "<%= daily.condition %>"</p>
   <% } %>
 </body>
 
