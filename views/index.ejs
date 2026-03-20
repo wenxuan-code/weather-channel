@@ -5,12 +5,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="./styles/styles.css">
 </head>
 
 <body>
-  <p><%=location%></p>
-  <p>Latitude: <%=latitude%></p>
-  <p>Longitude: <%=longitude%></p>
+  <form action="/" method="post" class="search">
+    <label for="location">Location: </label>
+    <input type="text" id="location" name="location" />
+    <button type="submit">Search</button>
+  </form>
+
+  <%- include("partials/errors.ejs") %>
+
+  <% if (locals.success) { %>
+    <p><%=location%></p>
+    <p>Latitude: <%=latitude%></p>
+    <p>Longitude: <%=longitude%></p>
+  <% } %>
 </body>
 
 </html>
