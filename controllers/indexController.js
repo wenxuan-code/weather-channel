@@ -5,6 +5,12 @@ import { body, matchedData, validationResult } from "express-validator";
 
 import dummygeo from "../dev-reference/dummygeo.json" with { type: "json" };
 import dummyweather from "../dev-reference/dummySmaller.json" with { type: "json" };
+import { http } from "../lib/http.js";
+import { formatDate } from "../lib/formatDate.js";
+
+//!DUMMY data
+const coordinates = dummygeo;
+const weatherData = dummyweather;
 
 const apiKey = process.env.API_KEY;
 const geoApiKey = process.env.GEO_API_KEY;
@@ -44,14 +50,10 @@ export async function displayWeather(req, res) {
     location = "Auckland";
   }
 
+  //=== !coords ====
   // Convert address to coordinates
-  // const coordinates = await geocoding.geocode(location);
+  const coordinates = await geocoding.geocode(location);
 
-  //!DUMMY data
-  const coordinates = dummygeo;
-  const weatherData = dummyweather;
-
-  //if coordinates.length < 1, res.render index with a error
   if (coordinates.length < 1) {
     res.status(500).render("index", {
       success: false,
@@ -62,9 +64,14 @@ export async function displayWeather(req, res) {
     return;
   }
 
-  console.log("Coordinates:", coordinates);
-
   const finalCoord = coordinates[0];
+
+  //=== !weather ====
+  const weatherQueryString = `https://api.pirateweather.net/forecast/${apiKey}/${finalCoord.latitude},${finalCoord.longitude}?exclude=minutely&units=ca`;
+
+  const weatherDataFetch = await http.get(weatherQueryString);
+  
+  const weatherData = weatherDataFetch.data;
 
   const currently = {
     condition: weatherData.currently.summary,
@@ -82,16 +89,9 @@ export async function displayWeather(req, res) {
     icon: weatherData.daily.icon,
   };
 
-  const currentDatetime = new Date(weatherData.currently.time * 1000);
-  const date = currentDatetime.getDate();
-  const month = currentDatetime.getMonth();
-  const year = currentDatetime.getFullYear();
-  const day = new Intl.DateTimeFormat("en-US", { weekday: "long" }).format(
-    currentDatetime.getDay(),
-  );
-  const hours = currentDatetime.getHours();
-  const minutes = "0" + currentDatetime.getMinutes();
-  const datetime = `${day} ${date}/${month}/${year}, ${hours}:${minutes}`;
+  //contructing the datetime string
+  const currentTimezone = weatherData.timezone;
+  const datetime = formatDate(weatherData.currently.time, currentTimezone);
 
   res.render("index", {
     success: true,
