@@ -24,28 +24,35 @@
         <div class="tv__graphic">
           <img src="./images/weather-icons/<%= currently.icon%>.png" alt="<%= currently.icon %>">
         </div>
-          <div class="tv__reporter">
-            <img src="./images/eiland-fall.jpg" alt="">
-          </div>
+        <div class="tv__reporter">
+          <img src="./images/eiland-fall.jpg" alt="">
+        </div>
       </div>
 
-      <div class="tv_bottom"></div>
-    </div>
+      <div class="tv_bottom">
+        <p>Kia ora <%= location %>. It is <%= datetime %> now. I am reporter Tellie, here to being you the weather update.
+      </div>
 
-    <% if (locals.success) { %>
-    <div class="report">
-      <p><%= location %></p>
-      <p>Latitude: <%= latitude %></p>
-      <p>Longitude: <%= longitude %></p>
-      <img src="./images/weather-icons/<%= currently.icon%>.png" alt="<% currently.icon %>">
-      <p>Kia ora <%= location %>, this is the weather update for <%= datetime %>. Right now, the conditions are "<%= currently.condition %>". It feels like <%= currently.temperature %>°C.</p>
-      <img src="./images/weather-icons/<%= hourly.icon%>.png " alt="<% hourly.icon %>">
-      <p>For the next few hours, the conditions will be "<%= hourly.condition %>"</p>
-      <img src="./images/weather-icons/<%= daily.icon%>.png " alt="<% daily.icon %>">
-      <p>In the coming week, the conditions will be "<%= daily.condition %>"</p>
-      <% } %>
-      <p>Thanks for tuning in! :3</p>
-    </div>
+      <% if (locals.success) { %>
+      <div class="report">
+        <p><%= location %></p>
+        <p>Latitude: <%= latitude %></p>
+        <p>Longitude: <%= longitude %></p>
+
+        <p>Kia ora <%= location %>, it is <%= datetime %> now. I am reporter Tellie, here to being you the weather update.
+
+          <img src="./images/weather-icons/<%= currently.icon%>.png" alt="<% currently.icon %>">
+
+          Right now, the conditions are "<%= currently.condition %>". It feels like <%= currently.temperature %>°C.
+        </p>
+        <img src="./images/weather-icons/<%= hourly.icon%>.png " alt="<% hourly.icon %>">
+
+        <p>For the next few hours, the conditions will be "<%= hourly.condition %>"</p>
+        <img src="./images/weather-icons/<%= daily.icon%>.png " alt="<% daily.icon %>">
+        <p>In the coming week, the conditions will be "<%= daily.condition %>"</p>
+        <% } %>
+        <p>Thanks for tuning in! :3</p>
+      </div>
   </main>
 </body>
 

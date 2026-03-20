@@ -54,6 +54,11 @@ div.tv_top {
 div.tv_bottom {
   background: palevioletred;
   height: var(--height_bottom);
+  color: black;
+  display: flex;
+  justify-content: center;
+  padding: calc(10px + 2vw);
+  font-size: clamp(13px, calc(1rem + 0.2vw), 18px);
 }
 
 div.tv__graphic {
@@ -99,13 +104,15 @@ div.tv__reporter {
   display: grid;
 
   img {
-    display: block
+    display: block;
   }
 }
 
-@media screen and (max-width: 580px) {
-  div.tv{
-    --height: 450px
+@media screen and (max-width: 560px) {
+  div.tv {
+    --height: 500px;
+    --height_top: calc(var(--height) * 0.5);
+    --height_bottom: calc(var(--height) * 0.5);
   }
 
   div.tv__graphic img {
@@ -113,13 +120,15 @@ div.tv__reporter {
   }
 
   div.tv__reporter {
-    width: min(200px, 40%);
+    width: min(200px, 30%);
   }
 }
 
-@media screen and (max-width: 420px) {
-  div.tv{
-    --height: 250px
+@media screen and (max-width: 350px) {
+  div.tv {
+    --height: 400px;
+    --height_top: calc(var(--height) * 0.35);
+    --height_bottom: calc(var(--height) * 0.65);
   }
 
   div.tv__graphic img {
