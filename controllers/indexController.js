@@ -38,21 +38,18 @@ export const searchLocation = [
   },
 ];
 
-//index page
-export async function displayWeather(req, res) {
+export async function fetchData(req, res, next) {
   //on init or empty query, default to "auckland"
   const location = req.query.location || "Auckland";
   if (location === "") {
     location = "Auckland";
   }
+  //========== !Coords =============
+  // Convert address to coordinates
+  // const coordinates = await geocoding.geocode(location);
 
   //!DUMMY data
   const coordinates = dummygeo;
-  const weatherData = dummyweather;
-
-  //=== !coords ====
-  // Convert address to coordinates
-  // const coordinates = await geocoding.geocode(location);
 
   if (coordinates.length < 1) {
     res.status(500).render("index", {
@@ -63,19 +60,42 @@ export async function displayWeather(req, res) {
     });
     return;
   }
-
   const finalCoord = coordinates[0];
 
-  //=== !weather ====
+  console.log(coordinates);
+
+  //========== !Weather ============
   // const weatherQueryString = `https://api.pirateweather.net/forecast/${apiKey}/${finalCoord.latitude},${finalCoord.longitude}?exclude=minutely&units=ca`;
 
   // const weatherDataFetch = await http.get(weatherQueryString);
 
   // const weatherData = weatherDataFetch.data;
 
+  // console.log(weatherData)
+
+  //!DUMMY data
+  const weatherData = dummyweather;
+
+  //========= Set Session ===========
+
+  req.session.coordinate = coordinates[0];
+  req.session.weatherData = weatherData;
+  req.session.location = location;
+  next();
+}
+
+//index page
+export async function displayWeather(req, res) {
+  const coordinate = req.session.coordinate;
+  const weatherData = req.session.weatherData;
+  const location = req.session.location;
+
+  //=== !coords ====
+
+  //=== !weather ====
   const currently = {
     condition: weatherData.currently.summary,
-    icon: weatherData.currently.icon,
+    icon: weatherData.currently.icon || "",
     temperature: weatherData.currently.apparentTemperature,
   };
 
@@ -96,13 +116,13 @@ export async function displayWeather(req, res) {
   res.render("index", {
     success: true,
 
-    location: finalCoord.state
-      ? ` ${finalCoord.state}, ${finalCoord.country}`
-      : `${location}, ${finalCoord.country}`,
+    location: coordinate.state
+      ? ` ${coordinate.state}, ${coordinate.country}`
+      : `${coordinate.country}`,
 
-    longitude: finalCoord.longitude,
+    longitude: coordinate.longitude,
 
-    latitude: finalCoord.latitude,
+    latitude: coordinate.latitude,
 
     input: location,
 

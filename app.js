@@ -3,6 +3,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import dotenv from "dotenv";
 import { indexRouter } from "./routes/indexRouter.js";
+import session from "express-session";
 
 dotenv.config();
 
@@ -17,9 +18,24 @@ app.use(e.static(assetsPath));
 app.use(urlencoded({ extended: true }));
 app.use(e.json());
 
+app.use(
+  session({
+    //TODO! PUT IN .ENV!
+    secret: "oatches",
+    resave: false,
+    saveUninitialized: true,
+    cookie: function (req) {
+      return {
+        secure: true,
+        maxAge: 60000,
+      };
+    },
+  }),
+);
+
 //--------routes-----------
 
-app.use("/", indexRouter)
+app.use("/", indexRouter);
 
 //---------port and error handling---------
 app.listen(PORT, (err) => {
@@ -31,4 +47,3 @@ app.use((err, req, res, next) => {
   console.log(err);
   res.status(err.statusCode || 500).render("500");
 });
-

@@ -35,9 +35,11 @@ div.tv {
   width: min(700px, 90%);
   height: var(--height);
 
-  outline: 3px solid red;
-  background: black;
+  /* outline: 3px solid red; */
+  background: transparent;
   display: grid;
+  border-radius: 16px;
+
 }
 
 div.tv__top,
@@ -63,13 +65,10 @@ div.tv_bottom {
 
 div.tv__graphic {
   width: min-content;
-  /* background: #184927; */
   padding: 5%;
   position: absolute;
   right: 4%;
   top: 7%;
-
-  /* border-radius: 16px; */
   background: #85a7a1;
   box-shadow:
     inset 9px 9px 21px #354340,
