@@ -1,5 +1,4 @@
 function fillReport({ currently, hourly, daily, datetime, location }) {
-
   const report = [
     `Kia ora ${location}, it is ${datetime} now. I am reporter Tellie, here to being you the weather update.`,
 
@@ -16,7 +15,7 @@ function fillReport({ currently, hourly, daily, datetime, location }) {
 }
 
 export async function click(req, res) {
-  console.log(req.session.coordinate)
+
   const report = fillReport({
     currently: req.session.currently,
     hourly: req.session.hourly,
@@ -27,9 +26,11 @@ export async function click(req, res) {
 
   let index = Number(req.params.index);
 
-  if (index)
-  index += 1;
-  console.log(index);
+  if (index === report.length - 1) {
+    index = 0;
+  } else {
+    index += 1;
+  }
 
   res.setHeader("Content-Type", "text/html").send(
     `<div class="tv_bottom" hx-post="/clicked/${index}" hx-trigger="click" hx-swap="outerHTML">

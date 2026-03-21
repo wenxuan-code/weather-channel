@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 import dotenv from "dotenv";
 import { indexRouter } from "./routes/indexRouter.js";
 import session from "express-session";
-import cors from "cors"
+import { reportRouter } from "./routes/reportRouter.js";
 
 dotenv.config();
 
@@ -28,15 +28,13 @@ app.use(
     cookie: {
       maxAge: 1000 * 60 * 60 * 24,
     },
-    //this needs to be added or the click controller wont work
-    //https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#including_credentials
-    credentials: 'include',
   }),
 );
 
 //--------routes-----------
 
 app.use("/", indexRouter);
+app.use("/clicked", reportRouter);
 
 //---------port and error handling---------
 app.listen(PORT, (err) => {

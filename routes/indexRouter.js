@@ -4,7 +4,6 @@ import {
   fetchData,
   searchLocation,
 } from "../controllers/indexController.js";
-import { click } from "../controllers/reportController.js";
 
 export const indexRouter = Router();
 
@@ -24,5 +23,3 @@ using req.session information, populate report array and res.send html based on 
 indexRouter.get("/", fetchData, displayWeather);
 
 indexRouter.post("/", searchLocation);
-
-indexRouter.post("/clicked/:index", click);
