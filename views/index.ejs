@@ -19,11 +19,10 @@
       <input type="text" id="location" name="location" value="<%=locals.input%>" />
       <button type="submit">Search</button>
     </form>
+        <button id="toggle-scanline">Toggle scanlines</button>
   </header>
 
   <main>
-    <button id="toggle-scanline">Toggle scanlines</button>
-
     <%- include("partials/errors.ejs") %>
 
     <div class="init_tv filter" hx-post="/clicked/-1" hx-trigger="load" hx-swap="innerHTML">

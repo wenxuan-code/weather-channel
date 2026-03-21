@@ -1,19 +1,43 @@
 html {
   --back: #163413;
-  --fore: #e8985e;
-  font-family:
-    ui-rounded, "Hiragino Maru Gothic ProN", Quicksand, Comfortaa, Manjari,
-    "Arial Rounded MT", "Arial Rounded MT Bold", Calibri, source-sans-pro,
-    sans-serif;
+  --fore: #f9e5d7;
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace; 
+  background-color: var(--back);
+}
+
+html::before {
+  position: fixed;
+  background: linear-gradient(to bottom, #2f2369, #fe7d32 80%);
+  pointer-events: none;
+  content: "";
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
 }
 
 body {
-  background-color: var(--back);
   color: var(--fore);
   font-size: 1.3rem;
   padding: 20px;
 
   width: 100vw;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 40px;
+}
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
 }
 
 main {
@@ -37,14 +61,14 @@ div.tv {
   --height_top: calc(var(--height) * 0.7);
   --height_bottom: calc(var(--height) * 0.3);
 
+  --tv_main: #1b305a;
+
   width: min(700px, 90%);
   height: var(--height);
-  font-size: clamp(15px, calc(1rem + 0.4vw), 20px);
+  font-size: clamp(15px, calc(1rem + 0.6vw), 23px);
 
   color: var(--back);
 
-  /* outline: 3px solid red; */
-  overflow: auto;
   background: transparent;
   display: grid;
   border-radius: 16px;
@@ -59,24 +83,21 @@ div.tv {
   height: 100%;
 }
 
-div.tv__top,
-div.tv__bottom {
-  width: 100%;
-}
-
 div.tv_top {
-  background-color: #85a7a1;
+  background-color: var(--tv_main);
   height: var(--height_top);
   position: relative;
 }
 
-div.tv_bottom {
-  background: #ddd0b0;
-  border: 10px inset #506765;
-  height: var(--height_bottom);
-  display: flex;
-  padding: 20px;
-  overflow-y: scroll;
+div.tv_top::after {
+  position: absolute;
+  pointer-events: none;
+  content: "";
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  box-shadow: inset 0px 0px 10px 15px #62b2d363;
 }
 
 div.tv__graphic {
@@ -120,6 +141,33 @@ div.tv__reporter {
 
   img {
     display: block;
+  }
+}
+
+div.tv_bottom {
+  background: var(--tv_main);
+  color: var(--fore);
+  border-top: 2px solid whitesmoke;
+  box-shadow: 0 -6px 0 var(--tv_main);
+  height: var(--height_bottom);
+  display: flex;
+  padding: 20px;
+  overflow-y: scroll;
+  z-index: 3;
+
+  p {
+    animation: fade-in 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 
@@ -211,8 +259,8 @@ body:not(.scanline) .filter {
   position: absolute;
   pointer-events: none;
   mix-blend-mode: multiply;
-  opacity: 0.5;
+  opacity: 0.7;
   z-index: 2;
 
-  background: radial-gradient(circle closest-corner, #f3c4ba 40%, #4f250481);
+  background: radial-gradient(circle closest-corner, #efe5e3 30%, #4f250481);
 }

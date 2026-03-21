@@ -1,22 +1,27 @@
 function fillReport({ currently, hourly, daily, datetime, location }) {
   const report = [
     {
-      text: `Kia ora ${location}! It is currently ${datetime}. I am reporter Tellie, here to bring you the weather update.`,
+      text: `Kia ora <span class="bold">${location}</span>! It is currently <span class="bold">${datetime}.</span>`,
       icon: "wizard.png",
       alt: "wizard hat spinning"
     },
     {
-      text: `Right now, the conditions are "${currently.condition.toLowerCase()}". It feels like ${currently.temperature}°C.`,
+      text: `You're watching the <span class="bold">Wizard Weather Forecast</span> and I am your reporter Tellie, here to bring you the latest weather update.`,
+      icon: "wizard.png",
+      alt: "wizard hat spinning"
+    },
+    {
+      text: `Right now, the conditions are <span class="bold">"${currently.condition.toLowerCase()}"</span>. It feels like <span class="bold">${currently.temperature}°C</span>.`,
       icon: `${currently.icon}.png`,
       alt: currently.icon
     },
     {
-      text: `For the next few hours, conditions are "${hourly.condition.toLowerCase()}"`,
+      text: `For the next few hours, conditions are <span class="bold">"${hourly.condition.toLowerCase()}"</span>`,
       icon: `${hourly.icon}.png`,
       alt: hourly.icon
     },
     {
-      text: `Our predictions for the coming week are "${daily.condition.toLowerCase()}"`,
+      text: `Our predictions for the coming week are "<span class="bold">${daily.condition.toLowerCase()}</span>"`,
       icon: `${daily.icon}.png`,
       alt: daily.icon
     },
