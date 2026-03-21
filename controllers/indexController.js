@@ -137,5 +137,7 @@ export async function displayWeather(req, res) {
     hourly: hourly,
 
     daily: daily,
+
+    timezone: currentTimezone
   });
 }

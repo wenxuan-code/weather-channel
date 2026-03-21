@@ -11,7 +11,7 @@
   <script src="./scripts/toggleScanline.js" defer></script>
 </head>
 
-<body class="scanlines">
+<body class="scanlines" onload="startTime()">
 
   <header>
     <form action="/" method="post" class="search">
@@ -19,7 +19,7 @@
       <input type="text" id="location" name="location" value="<%=locals.input%>" />
       <button type="submit">Search</button>
     </form>
-        <button id="toggle-scanline">Toggle scanlines</button>
+    <button id="toggle-scanline">Toggle scanlines</button>
   </header>
 
   <main>
@@ -28,6 +28,34 @@
     <div class="init_tv filter" hx-post="/clicked/-1" hx-trigger="load" hx-swap="innerHTML">
     </div>
   </main>
+
+  <footer>
+    <p class="center">Made by wenxuan (2026)</p>
+
+    <p id="time" data-timezone="<%= timezone %>">0:00:00 (PNF404)</p>
+
+    <% let timeZone = timezone %>
+
+    <script>
+      function startTime() {
+
+        let timezone = document.getElementById('time').dataset.timezone
+
+        const timeNow = new Date();
+
+        const time = new Intl.DateTimeFormat("en-GB", {
+          hour: "numeric",
+          minute: "numeric",
+          second: "numeric",
+          timeZone: timezone,
+        }).format(timeNow);
+
+        document.querySelector('#time').textContent = `${time} (${timezone})`;
+
+        setTimeout(startTime, 1000);
+      }
+    </script>
+  </footer>
 </body>
 
 </html>

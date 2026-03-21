@@ -3,12 +3,12 @@ function fillReport({ currently, hourly, daily, datetime, location }) {
     {
       text: `Kia ora <span class="bold">${location}</span>! It is currently <span class="bold">${datetime}.</span>`,
       icon: "wizard.png",
-      alt: "wizard hat spinning"
+      alt: "wizard weather forecast logo"
     },
     {
-      text: `You're watching the <span class="bold">Wizard Weather Forecast</span> and I am your reporter Tellie, here to bring you the latest weather update.`,
+      text: `You're watching the <span class="bold">Wizard Weather Forecast</span>. I am your reporter <span class="bold">Tellie</span>, bringing you the latest weather update.`,
       icon: "wizard.png",
-      alt: "wizard hat spinning"
+      alt: "wizard weather forecast logo"
     },
     {
       text: `Right now, the conditions are <span class="bold">"${currently.condition.toLowerCase()}"</span>. It feels like <span class="bold">${currently.temperature}°C</span>.`,
@@ -28,7 +28,7 @@ function fillReport({ currently, hourly, daily, datetime, location }) {
     {
       text: `...And that's it for the weather report. Thanks for tuning in!`,
       icon: "wizard.png",
-      alt: "wizard hat spinning"
+      alt: "wizard weather forecast logo"
     },
   ];
 
@@ -53,7 +53,7 @@ export async function click(req, res) {
   }
 
   res.setHeader("Content-Type", "text/html").send(
-    `<div class="tv" hx-post="/clicked/${index}" hx-trigger="click" hx-swap="outerHTML">
+    `<button class="tv" hx-post="/clicked/${index}" hx-trigger="click" hx-swap="outerHTML">
 
       <div class="tv_top">
         <div class="tv__graphic">
@@ -66,6 +66,6 @@ export async function click(req, res) {
       <div class="tv_bottom">
         <p>${report[index].text}</p>
       </div>
-    </div>`,
+    </button>`,
   );
 }
