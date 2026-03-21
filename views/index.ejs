@@ -8,31 +8,25 @@
   <link rel="stylesheet" href="./styles/reset.css">
   <link rel="stylesheet" href="./styles/styles.css">
   <script src="./scripts/htmx.min.js"></script>
+  <script src="./scripts/toggleScanline.js" defer></script>
 </head>
 
-<body>
-  <main>
+<body class="scanlines">
+
+  <header>
     <form action="/" method="post" class="search">
       <label for="location">Location: </label>
       <input type="text" id="location" name="location" value="<%=locals.input%>" />
       <button type="submit">Search</button>
     </form>
+  </header>
+
+  <main>
+    <button id="toggle-scanline">Toggle scanlines</button>
 
     <%- include("partials/errors.ejs") %>
 
-    <div class="tv" hx-post="/clicked/0" hx-trigger="click" hx-swap="outerHTML">
-
-      <div class="tv_top">
-        <div class="tv__graphic">
-          <img src="./images/weather-icons/wizard.png" alt="wizard hat spinning">
-        </div>
-        <div class="tv__reporter">
-          <img src="./images/eiland-fall.jpg" alt="">
-        </div>
-      </div>
-      <div class="tv_bottom">
-        <p>Kia ora <%= location %>. It's <%= datetime %> now. I am reporter Tellie, here to being you the weather update.</p>
-      </div>
+    <div class="init_tv filter" hx-post="/clicked/-1" hx-trigger="load" hx-swap="innerHTML">
     </div>
   </main>
 </body>

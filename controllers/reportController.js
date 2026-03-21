@@ -1,7 +1,7 @@
 function fillReport({ currently, hourly, daily, datetime, location }) {
   const report = [
     {
-      text: `Kia ora ${location}, it is ${datetime} now. I am reporter Tellie, here to being you the weather update.`,
+      text: `Kia ora ${location}! It is currently ${datetime}. I am reporter Tellie, here to bring you the weather update.`,
       icon: "wizard.png",
       alt: "wizard hat spinning"
     },
@@ -11,7 +11,7 @@ function fillReport({ currently, hourly, daily, datetime, location }) {
       alt: currently.icon
     },
     {
-      text: `For the next few hours, the conditions will be "${hourly.condition.toLowerCase()}"`,
+      text: `For the next few hours, conditions are "${hourly.condition.toLowerCase()}"`,
       icon: `${hourly.icon}.png`,
       alt: hourly.icon
     },
