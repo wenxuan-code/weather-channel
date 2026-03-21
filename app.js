@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import dotenv from "dotenv";
 import { indexRouter } from "./routes/indexRouter.js";
 import session from "express-session";
+import cors from "cors"
 
 dotenv.config();
 
@@ -23,13 +24,13 @@ app.use(
     //TODO! PUT IN .ENV!
     secret: "oatches",
     resave: false,
-    saveUninitialized: true,
-    cookie: function (req) {
-      return {
-        secure: true,
-        maxAge: 60000,
-      };
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24,
     },
+    //this needs to be added or the click controller wont work
+    //https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#including_credentials
+    credentials: 'include',
   }),
 );
 

@@ -4,7 +4,7 @@ import {
   fetchData,
   searchLocation,
 } from "../controllers/indexController.js";
-import { click } from "../controllers/clickController.js";
+import { click } from "../controllers/reportController.js";
 
 export const indexRouter = Router();
 

@@ -62,8 +62,6 @@ export async function fetchData(req, res, next) {
   }
   const finalCoord = coordinates[0];
 
-  console.log(coordinates);
-
   //========== !Weather ============
   // const weatherQueryString = `https://api.pirateweather.net/forecast/${apiKey}/${finalCoord.latitude},${finalCoord.longitude}?exclude=minutely&units=ca`;
 
@@ -80,7 +78,7 @@ export async function fetchData(req, res, next) {
 
   req.session.coordinate = coordinates[0];
   req.session.weatherData = weatherData;
-  req.session.location = location;
+  req.session.input = location;
   next();
 }
 
@@ -113,12 +111,20 @@ export async function displayWeather(req, res) {
   const currentTimezone = weatherData.timezone;
   const datetime = formatDate(weatherData.currently.time, currentTimezone);
 
+  req.session.currently = currently;
+  req.session.hourly = hourly;
+  req.session.daily = daily;
+  req.session.datetime = datetime;
+  req.session.location = coordinate.state
+    ? ` ${coordinate.state}, ${coordinate.country}`
+    : `${coordinate.country}`;
+
+  // console.log(req.session.currently);
+
   res.render("index", {
     success: true,
 
-    location: coordinate.state
-      ? ` ${coordinate.state}, ${coordinate.country}`
-      : `${coordinate.country}`,
+    location: req.session.location,
 
     longitude: coordinate.longitude,
 
