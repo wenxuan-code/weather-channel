@@ -20,56 +20,19 @@
 
     <%- include("partials/errors.ejs") %>
 
-    <div id="parent-div">
-      <button hx-post="/clicked" hx-trigger="click" hx-target="#parent-div" hx-swap="outerHTML">
-        Click Me!
-      </button>
-    </div>
-
-    <div class="tv">
+    <div class="tv" hx-post="/clicked/0" hx-trigger="click" hx-swap="outerHTML">
 
       <div class="tv_top">
         <div class="tv__graphic">
-          <img src="./images/weather-icons/<%= currently.icon%>.png" alt="<%= currently.icon %>">
+          <img src="./images/weather-icons/wizard.png" alt="wizard hat spinning">
         </div>
         <div class="tv__reporter">
           <img src="./images/eiland-fall.jpg" alt="">
         </div>
       </div>
-
-      <script>
-        let index = 1;
-
-        function handleNext() {
-          index += 1
-        }
-      </script>
-
-      <div class="tv_bottom" hx-post="/clicked/0"hx-trigger="click" hx-swap="outerHTML">
+      <div class="tv_bottom">
         <p>Kia ora <%= location %>. It's <%= datetime %> now. I am reporter Tellie, here to being you the weather update.</p>
       </div>
-    </div>
-
-    <% if (locals.success) { %>
-    <div class="report">
-      <p><%= location %></p>
-      <p>Latitude: <%= latitude %></p>
-      <p>Longitude: <%= longitude %></p>
-
-      <p>Kia ora <%= location %>, it is <%= datetime %> now. I am reporter Tellie, here to being you the weather update.</p>
-
-      <img src="./images/weather-icons/<%= currently.icon%>.png" alt="<% currently.icon %>">
-
-      <p>
-        Right now, the conditions are "<%= currently.condition %>". It feels like <%= currently.temperature %>°C.
-      </p>
-      <img src="./images/weather-icons/<%= hourly.icon%>.png " alt="<% hourly.icon %>">
-
-      <p>For the next few hours, the conditions will be "<%= hourly.condition %>"</p>
-      <img src="./images/weather-icons/<%= daily.icon%>.png " alt="<% daily.icon %>">
-      <p>In the coming week, the conditions will be "<%= daily.condition %>"</p>
-      <% } %>
-      <p>Thanks for tuning in! :3</p>
     </div>
   </main>
 </body>

@@ -58,9 +58,9 @@ div.tv_bottom {
   height: var(--height_bottom);
   color: black;
   display: flex;
-  justify-content: center;
   padding: calc(10px + 2vw);
   font-size: clamp(13px, calc(1rem + 0.2vw), 18px);
+  overflow-y: scroll;
 }
 
 div.tv__graphic {
