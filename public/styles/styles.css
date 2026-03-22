@@ -179,6 +179,9 @@ div.tv_bottom {
   box-shadow: 0 -6px 0 var(--tv_main);
   height: var(--height_bottom);
   display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
   padding: 20px;
   overflow-y: scroll;
   z-index: 3;
@@ -186,8 +189,37 @@ div.tv_bottom {
     ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas,
     "DejaVu Sans Mono", monospace;
 
+  position: relative;
+
   p {
     animation: fade-in 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+    text-align: initial;
+  }
+
+  svg.next-arrow {
+    margin-left: auto;
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    fill: currentColor;
+    animation: next-bob 1s ease-in infinite;
+  }
+}
+@keyframes next-bob {
+  0% {
+    transform: translatey(-10px);
+  }
+  70% {
+    transform: translatey(-6px);
+  }
+  80% {
+    transform: translatey(-2px);
+  }
+  90% {
+    transform: translatey(2px);
+  }
+  100% {
+    transform: translatey(6px);
   }
 }
 
