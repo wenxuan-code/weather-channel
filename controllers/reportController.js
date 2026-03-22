@@ -26,7 +26,7 @@ function fillReport({ currently, hourly, daily, datetime, location }) {
       text: `For the next few hours, conditions are <span class="bold">"${hourly.condition.toLowerCase()}"</span>`,
       icon: `${hourly.icon}.png`,
       alt: hourly.icon,
-      tellieImg: "tellie-currently.gif",
+      tellieImg: "tellie-hourly.gif",
       tellieAlt: ""
     },
     {
