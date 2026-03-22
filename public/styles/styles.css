@@ -126,7 +126,9 @@ div.tv_top::after {
 }
 
 div.tv__graphic {
-  width: min-content;
+  width: calc(200px + 5vw);
+  max-width: 271px;
+  aspect-ratio: 1/1;
   padding: 5%;
   position: absolute;
   right: 4%;
@@ -138,7 +140,7 @@ div.tv__graphic {
 
   img {
     max-width: revert;
-    width: calc(120px + 5vw);
+    width: 100%;
     display: block;
     animation: float 3s ease-in-out infinite;
   }
@@ -157,15 +159,16 @@ div.tv__graphic {
 }
 
 div.tv__reporter {
-  width: min(200px, 100%);
-  background: #177c77;
+  width: min(330px, 50vw);
+  background: transparent;
   position: absolute;
-  bottom: 0%;
-  left: 10%;
+  bottom: 1%;
+  left: 2%;
   display: grid;
 
   img {
     display: block;
+    width: 100%;
   }
 }
 
@@ -199,7 +202,7 @@ div.tv_bottom {
   }
 }
 
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 620px) {
   div.init_tv,
   button.tv {
     --height: 500px;
@@ -211,16 +214,18 @@ div.tv_bottom {
     padding: calc(10px + 2vw);
   }
 
-  div.tv__graphic img {
-    width: calc(80px + 5vw);
+  div.tv__graphic {
+    width: calc(140px + 5vw);
+    aspect-ratio: 1/1;
   }
 
   div.tv__reporter {
-    width: min(200px, 30%);
+    width: min(330px, 35vw);
+    left: 5%;
   }
 }
 
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 410px) {
   div.init_tv,
   button.tv {
     --height: 400px;
@@ -228,12 +233,14 @@ div.tv_bottom {
     --height_bottom: calc(var(--height) * 0.65);
   }
 
-  div.tv__graphic img {
-    width: calc(60px + 5vw);
+  div.tv__graphic {
+    width: calc(100px + 5vw);
+    aspect-ratio: 1/1;
   }
 
   div.tv__reporter {
-    width: min(200px, 30%);
+    width: min(330px, 30vw);
+    left: 5%;
   }
 }
 

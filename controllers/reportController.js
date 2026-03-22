@@ -60,7 +60,7 @@ export async function click(req, res) {
           <img src="./images/weather-icons/${report[index].icon}" alt="${report[index].alt}">
         </div>
         <div class="tv__reporter">
-          <img src="./images/eiland-fall.jpg" alt="">
+          <img src="./images/tellie.gif" alt="">
         </div>
       </div>
       <div class="tv_bottom">
