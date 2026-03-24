@@ -37,7 +37,14 @@ function fillReport({ currently, hourly, daily, datetime, location }) {
       tellieAlt: ""
     },
     {
-      text: `...And that's it for the weather report. Thanks for tuning in!`,
+      text: `...And that's it for the weather report. As usual, nothing is definite as the whims of nature are beyond our ken.`,
+      icon: "wizard.png",
+      alt: "wizard weather forecast logo",
+      tellieImg: "tellie.gif",
+      tellieAlt: ""
+    },
+    {
+      text: `Thanks for tuning in!`,
       icon: "wizard.png",
       alt: "wizard weather forecast logo",
       tellieImg: "tellie.gif",

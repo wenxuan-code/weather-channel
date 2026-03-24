@@ -117,8 +117,6 @@ export async function displayWeather(req, res) {
     ? ` ${coordinate.state}, ${coordinate.country}`
     : `${coordinate.country}`;
 
-  console.log(req.session);
-
   res.render("index", {
     success: true,
 
