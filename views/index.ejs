@@ -25,12 +25,35 @@
   <main>
     <%- include("partials/errors.ejs") %>
 
-    <noscript>No javascript!!! :O</noscript>
+    <noscript>
+      <div class="noscript">
+        <h2>Weather Report Transcript </h2>
+        <p>Kia ora <%= location %>! It is currently <%= datetime %>.</p>
 
+        <p>You're watching the Wizard Weather Forecast. I am your reporter Tellie, bringing you the latest weather update.</p>
+
+        <p>Right now, the conditions are "<%= currently.condition.toLowerCase() %>". It feels like <%= currently.temperature %>°C.</p>
+
+        <p>For the next few hours, conditions are "<%= hourly.condition.toLowerCase() %>"</p>
+
+        <p>Our predictions for the coming week are "<%= daily.condition.toLowerCase() %>"</p>
+
+        <p>...And that's it for the weather report. As usual, nothing is definite as the whims of nature are beyond our ken.</p>
+
+        <p>Thanks for tuning in!</p>
+      </div>
+    </noscript>
+
+    <h2 class="off-screen">TV</h2>
     <div class="init_tv filter" hx-post="/clicked/-1" hx-trigger="load" hx-swap="innerHTML">
+      <noscript>
+        <div>
+          <p>No Javascript :O</p>
+          <p>The TV is out of order because it needs Javascript to function...(◡_◡)</p>
+        </div>
+      </noscript>
     </div>
   </main>
-
   <footer>
     <p class="center">Handcrafted by wenxuan (2026)</p>
 

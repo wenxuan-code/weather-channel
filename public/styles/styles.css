@@ -11,6 +11,8 @@
 html {
   --back: #163413;
   --fore: #f9e5d7;
+  --tv_main: #1b305a;
+  --tv_back: #051431;
   font-family:
     "star3000", ui-monospace, "Cascadia Code", "Source Code Pro", Menlo,
     Consolas, "DejaVu Sans Mono", monospace;
@@ -87,20 +89,24 @@ button.tv {
   --height_top: calc(var(--height) * 0.7);
   --height_bottom: calc(var(--height) * 0.3);
 
-  --tv_main: #1b305a;
-  --tv_back: #051431;
-
   width: min(700px, 90%);
   height: var(--height);
   font-size: clamp(15px, calc(1rem + 0.6vw), 23px);
+  font-family:
+    ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas,
+    "DejaVu Sans Mono", monospace;
 
-  color: var(--back);
+  color: var(--fore);
 
   background: var(--tv_back);
   display: grid;
 
   & * {
     cursor: pointer;
+  }
+
+  span div {
+    padding: 20px;
   }
 }
 
@@ -209,7 +215,15 @@ div.tv__reporter {
   }
 }
 
-div.tv_bottom {
+div.noscript {
+  font-size: clamp(15px, calc(1rem + 0.5vw), 20px);
+  font-family:
+    ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas,
+    "DejaVu Sans Mono", monospace;
+}
+
+div.tv_bottom,
+div.noscript {
   background: var(--tv_main);
   color: var(--fore);
   border-top: 2px solid whitesmoke;
@@ -222,9 +236,6 @@ div.tv_bottom {
   padding: 20px;
   overflow-y: scroll;
   z-index: 3;
-  font-family:
-    ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas,
-    "DejaVu Sans Mono", monospace;
 
   position: relative;
 
@@ -232,7 +243,6 @@ div.tv_bottom {
     animation: fade-in 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
     text-align: initial;
   }
-
   svg.next-arrow {
     margin-left: auto;
     width: 15px;
