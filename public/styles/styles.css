@@ -215,13 +215,6 @@ div.tv__reporter {
   }
 }
 
-div.noscript {
-  font-size: clamp(15px, calc(1rem + 0.5vw), 20px);
-  font-family:
-    ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas,
-    "DejaVu Sans Mono", monospace;
-}
-
 div.tv_bottom,
 div.noscript {
   background: var(--tv_main);
@@ -390,4 +383,26 @@ body:not(.scanlines) .filter {
   z-index: 4;
 
   background: radial-gradient(circle closest-corner, #efe5e3 30%, #4f250481);
+}
+
+/* nosript styling */
+/* Note: main stying shared with .tv_bottom */
+div.noscript {
+  font-size: clamp(15px, calc(1rem + 0.5vw), 20px);
+  font-family:
+    ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas,
+    "DejaVu Sans Mono", monospace;
+}
+
+div.noscript_section {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+  & > div:has(p),
+  & > p {
+    width: min(600px, 100%);
+  }
 }
