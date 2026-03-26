@@ -68,7 +68,7 @@ main {
   align-items: center;
   gap: 30px;
 
-  width: min(1000px, 90vw);
+  width: min(1000px, 100%);
   margin: auto;
 }
 
@@ -112,8 +112,9 @@ button.tv {
 
 button.tv {
   width: 100%;
-  height: 100%;
+  height: max-content;
   position: relative;
+  isolation: isolate;
 }
 
 button.tv.turn-on {
@@ -132,6 +133,8 @@ button.tv.turn-off {
   100% {
     transform: rotateX(0deg);
     opacity: 1;
+    /* prevents image from shifting to the right */
+    z-index: 1;
   }
 }
 
@@ -405,4 +408,5 @@ div.noscript_section {
   & > p {
     width: min(600px, 100%);
   }
+
 }

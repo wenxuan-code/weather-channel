@@ -46,10 +46,10 @@ export async function fetchData(req, res, next) {
   }
   //========== !Coords =============
   // Convert address to coordinates
-  // const coordinates = await geocoding.geocode(location);
+  const coordinates = await geocoding.geocode(location);
 
   //!DUMMY data
-  const coordinates = dummygeo;
+  // const coordinates = dummygeo;
 
   if (coordinates.length < 1) {
     res.status(500).render("index", {
@@ -65,12 +65,12 @@ export async function fetchData(req, res, next) {
   //========== !Weather ============
   const weatherQueryString = `https://api.pirateweather.net/forecast/${apiKey}/${finalCoord.latitude},${finalCoord.longitude}?exclude=minutely&units=ca`;
 
-  // const weatherDataFetch = await http.get(weatherQueryString);
+  const weatherDataFetch = await http.get(weatherQueryString);
 
-  // const weatherData = weatherDataFetch.data;
+  const weatherData = weatherDataFetch.data;
 
   //!DUMMY data
-  const weatherData = dummyweather;
+  // const weatherData = dummyweather;
 
   //========= Set Session ===========
 
@@ -92,7 +92,7 @@ export async function displayWeather(req, res) {
   const currently = {
     condition: weatherData.currently.summary,
     icon: weatherData.currently.icon || "",
-    temperature: weatherData.currently.apparentTemperature,
+    temperature: weatherData.currently.temperature,
   };
 
   const hourly = {

@@ -4,16 +4,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Wizard Weather Forecast</title>
   <link rel="stylesheet" href="./styles/reset.css">
   <link rel="stylesheet" href="./styles/styles.css">
   <script src="./scripts/htmx.min.js"></script>
   <script src="./scripts/toggleScanline.js" defer></script>
+  <style>
+    html {
+      background-color: #1b305a;
+    }
+  </style>
 </head>
 
 <body class="scanlines" onload="startTime()">
 
   <header>
+  <h1 class="off-screen">Wizard Weather Forecast</h1>
     <form action="/" method="post" class="search">
       <label for="location">Location: </label>
       <input type="text" id="location" name="location" value="<%=locals.input%>" />
@@ -40,28 +46,28 @@
 
         <div class="noscript_section">
           <div>
-            <img src="./images/tellie-currently.gif" alt="Tellie looking to the right, talking and pointing to the weather icon with their star wand.">
+            <img loading="lazy" decoding="async" src="./images/tellie-currently.gif" alt="Tellie looking to the right, talking and pointing to the weather icon with their star wand.">
           </div>
           <p>Right now, the conditions are "<%= currently.condition.toLowerCase() %>". It feels like <%= currently.temperature %>°C.</p>
         </div>
 
         <div class="noscript_section">
           <div>
-            <img src="./images/tellie-hourly.gif" alt="Tellie looking at the straight at the viewer, talking, smiling and waving their hands.">
+            <img loading="lazy" decoding="async" src="./images/tellie-hourly.gif" alt="Tellie looking at the straight at the viewer, talking, smiling and waving their hands.">
           </div>
           <p>For the next few hours, conditions are "<%= hourly.condition.toLowerCase() %>"</p>
         </div>
 
         <div class="noscript_section">
           <div>
-            <img src="./images/tellie-daily.gif" alt="Telling talking while looking at a shining orb.">
+            <img loading="lazy" decoding="async" src="./images/tellie-daily.gif" alt="Telling talking while looking at a shining orb.">
           </div>
           <p>Our predictions for the coming week are "<%= daily.condition.toLowerCase() %>"</p>
         </div>
 
         <div class="noscript_section">
           <div>
-            <img src="./images/tellie.gif" alt="Tellie looking at the straight at the viewer and talking.">
+            <img loading="lazy" decoding="async" src="./images/tellie.gif" alt="Tellie looking at the straight at the viewer and talking.">
           </div>
           <div>
             <p>...And that's it for the weather report. As usual, nothing is definite as the whims of nature are beyond our ken.</p>
