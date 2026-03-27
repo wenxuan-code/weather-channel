@@ -23,6 +23,7 @@ It has an alternate display for people who browse with javascript disabled.
 - This project came to me in a shock of divine inspiration when I watched the youtube video ["weather channel vaporwave"](https://youtu.be/k_Dwg_x48Rw?si=1DY2Jt_p1mZj_p3V). I wanted to capture the cozy nostalgic feeling.
 
 ![WeatherSTAR 4000](./public/images/readme/w4000.jpg)
+
 ^ weatherSTAR 4000 display
 
 - I tried to emulate The Weather Channel's [WeatherSTAR 4000 display](https://twcclassics.com/information/weatherstar-4000-flavors.html) while styling the page, from its orange-indigo gradient to the blue information boxes.
